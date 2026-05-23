@@ -442,8 +442,9 @@ function setLang(lang) {
   try { localStorage.setItem('fp-lang', lang); } catch(e) {}
 }
 
-setLang('uk');
-try { var s=localStorage.getItem('fp-lang'); if(s) setLang(s); } catch(e) {}
+document.addEventListener('DOMContentLoaded', function() {
+  try { var s=localStorage.getItem('fp-lang'); if(s) setLang(s); else setLang('uk'); } catch(e) { setLang('uk'); }
+});
 </script>
 </body>
 </html>
