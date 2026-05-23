@@ -92,6 +92,13 @@
   }
   .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
 
+  /* LANG SWITCHER */
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .lang-switcher { display: flex; align-items: center; gap: 2px; background: rgba(255,255,255,0.08); border-radius: 6px; padding: 3px; }
+  .lang-btn { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 500; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-family: var(--font-body); transition: all 0.2s; }
+  .lang-btn.active { background: var(--gold); color: var(--navy); }
+  .lang-btn:hover:not(.active) { color: var(--white); }
+
   /* ── HERO ── */
   .hero {
     background: var(--navy);
@@ -556,24 +563,27 @@
     <div class="nav-logo-mark">FP</div>
     <span class="nav-logo-text">Fin<span>Practice</span></span>
   </a>
-  <ul class="nav-links">
-    <li><a href="#tools">Інструменти</a></li>
-    <li><a href="#why">Про платформу</a></li>
-    <li><a href="#contact">Контакти</a></li>
-    <li><a href="#tools" class="nav-cta">Переглянути інструменти</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#tools" data-ua="Інструменти" data-en="Tools">Інструменти</a></li>
+      <li><a href="#why" data-ua="Про платформу" data-en="About">Про платформу</a></li>
+      <li><a href="#contact" data-ua="Контакти" data-en="Contact">Контакти</a></li>
+      <li><a href="#tools" class="nav-cta" data-ua="Переглянути інструменти" data-en="Browse tools">Переглянути інструменти</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('uk')">UA</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-grid">
     <div class="hero-content">
-      <div class="hero-eyebrow">Платформа для фінансових практиків</div>
+      <div class="hero-eyebrow" data-ua="Платформа для фінансових практиків" data-en="Platform for financial practitioners">Платформа для фінансових практиків</div>
       <h1>Точні інструменти для <em>аудиту та обліку</em></h1>
-      <p class="hero-desc">
-        Спеціалізовані застосунки для бухгалтерів, аудиторів та фінансових директорів.
-        Відповідність міжнародним стандартам IFRS, МСФЗ та НП(С)БО.
-      </p>
+      <p class="hero-desc" data-ua="Спеціалізовані застосунки для бухгалтерів, аудиторів та фінансових директорів. Відповідність міжнародним стандартам IFRS, МСФЗ та НП(С)БО." data-en="Specialized desktop apps for accountants, auditors and CFOs. Full compliance with IFRS international standards.">Спеціалізовані застосунки для бухгалтерів, аудиторів та фінансових директорів. Відповідність міжнародним стандартам IFRS, МСФЗ та НП(С)БО.</p>
       <div class="hero-actions">
         <a href="#tools" class="btn-primary">
           Переглянути інструменти →
@@ -828,5 +838,22 @@
   </div>
 </footer>
 
+
+<script>
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-ua]').forEach(function(el) {
+    el.textContent = lang === 'uk' ? el.dataset.ua : el.dataset.en;
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent === (lang === 'uk' ? 'UA' : 'EN'));
+  });
+  try { localStorage.setItem('fp-lang', lang); } catch(e) {}
+}
+try {
+  var saved = localStorage.getItem('fp-lang');
+  if (saved && saved !== 'uk') setLang(saved);
+} catch(e) {}
+</script>
 </body>
 </html>
