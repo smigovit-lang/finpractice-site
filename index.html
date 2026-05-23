@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinPractice — Інструменти для аудиторів та фінансистів</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1F3C;
+    --navy-mid: #1A3560;
+    --navy-light: #2A4A7F;
+    --gold: #B8942A;
+    --gold-light: #D4AF4A;
+    --gold-pale: #F5EDD4;
+    --cream: #F9F7F2;
+    --white: #FFFFFF;
+    --gray-text: #6B7280;
+    --gray-line: #E5E0D8;
+    --green-accent: #1A6B52;
+    --green-pale: #E8F4EF;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13, 31, 60, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184, 148, 42, 0.25);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    background: var(--gold);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    color: var(--navy);
+    font-size: 16px; font-weight: 600;
+  }
+  .nav-logo-text {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: 18px; font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo-text span { color: var(--gold-light); }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 14px; font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 100px 2rem 80px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,148,42,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hero-grid {
+    max-width: 1140px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(184,148,42,0.12);
+    border: 1px solid rgba(184,148,42,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    color: var(--gold-light);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 54px; font-weight: 600;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero-desc {
+    color: rgba(255,255,255,0.62);
+    font-size: 17px; font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 44px;
+    line-height: 1.8;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-size: 15px; font-weight: 500;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.5); }
+
+  /* Hero stat card */
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 32px;
+  }
+  .hero-card-title {
+    font-family: var(--font-display);
+    color: var(--gold-light);
+    font-size: 13px; font-weight: 400;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-stat { margin-bottom: 20px; }
+  .hero-stat-label {
+    color: rgba(255,255,255,0.45);
+    font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .hero-stat-value {
+    color: var(--white); font-size: 22px; font-weight: 500;
+  }
+  .hero-stat-value.highlight { color: var(--gold-light); }
+
+  .hero-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 20px 0; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(26,107,82,0.3);
+    border: 1px solid rgba(26,107,82,0.5);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px; color: #6ECFAA; font-weight: 500;
+  }
+  .hero-badge::before { content: '✓'; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 90px 2rem; }
+  .container { max-width: 1140px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 38px; font-weight: 600;
+    line-height: 1.2;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    color: var(--gray-text);
+    font-size: 16px; font-weight: 300;
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  /* ── TOOLS SECTION ── */
+  .tools { background: var(--white); }
+
+  .tools-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 56px; flex-wrap: wrap; gap: 24px;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .tool-card {
+    border: 1px solid var(--gray-line);
+    border-radius: 10px;
+    padding: 32px;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    background: var(--white);
+  }
+  .tool-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+  .tool-card.featured {
+    border-color: var(--navy-light);
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .tool-icon {
+    width: 48px; height: 48px;
+    border-radius: 8px;
+    background: var(--gold-pale);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+  .tool-card.featured .tool-icon { background: rgba(184,148,42,0.2); }
+
+  .tool-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .tag-available { background: var(--green-pale); color: var(--green-accent); }
+  .tag-soon { background: #F3F0E8; color: #8A7A50; }
+  .tag-new {
+    background: var(--gold-pale); color: var(--gold);
+    position: absolute; top: 20px; right: 20px;
+  }
+
+  .tool-card h3 {
+    font-family: var(--font-display);
+    font-size: 21px; font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--navy);
+  }
+  .tool-card.featured h3 { color: var(--white); }
+
+  .tool-card p {
+    font-size: 14px; color: var(--gray-text);
+    line-height: 1.7; margin-bottom: 24px;
+  }
+  .tool-card.featured p { color: rgba(255,255,255,0.6); }
+
+  .tool-features {
+    list-style: none; margin-bottom: 28px;
+  }
+  .tool-features li {
+    font-size: 13px; color: var(--gray-text);
+    padding: 5px 0;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tool-card.featured .tool-features li { color: rgba(255,255,255,0.65); }
+  .tool-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+  .tool-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid var(--gray-line);
+  }
+  .tool-card.featured .tool-footer { border-top-color: rgba(255,255,255,0.1); }
+
+  .tool-price {
+    font-size: 22px; font-weight: 500; color: var(--navy);
+  }
+  .tool-card.featured .tool-price { color: var(--gold-light); }
+  .tool-price-period { font-size: 13px; color: var(--gray-text); font-weight: 400; }
+
+  .btn-tool {
+    padding: 9px 20px; border-radius: 4px;
+    font-size: 13px; font-weight: 500;
+    text-decoration: none; cursor: pointer;
+    border: none; font-family: var(--font-body);
+    transition: all 0.15s;
+  }
+  .btn-tool-primary {
+    background: var(--gold); color: var(--navy);
+  }
+  .btn-tool-primary:hover { background: var(--gold-light); }
+  .btn-tool-outline {
+    background: transparent; color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .btn-tool-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
+  .btn-tool-disabled {
+    background: #F3F0E8; color: #B0A880; cursor: default;
+  }
+
+  /* ── WHY SECTION ── */
+  .why { background: var(--cream); }
+
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    margin-top: 60px;
+  }
+
+  .why-list { list-style: none; }
+  .why-item {
+    display: flex; gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--gray-line);
+  }
+  .why-item:last-child { border-bottom: none; }
+
+  .why-num {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 14px; color: var(--gold);
+    margin-top: 2px;
+  }
+  .why-item h4 {
+    font-size: 16px; font-weight: 500; color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .why-item p { font-size: 14px; color: var(--gray-text); line-height: 1.7; }
+
+  .why-visual {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 40px;
+    position: relative; overflow: hidden;
+  }
+  .why-visual::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,148,42,0.1) 0%, transparent 70%);
+  }
+
+  .why-quote {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 400;
+    color: var(--white); line-height: 1.6;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  .why-quote::before {
+    content: '"'; display: block;
+    font-size: 60px; color: var(--gold); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .why-author {
+    display: flex; align-items: center; gap: 12px;
+    position: relative; z-index: 1;
+  }
+  .why-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(184,148,42,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: var(--gold);
+    font-weight: 500;
+  }
+  .why-author-name { color: var(--white); font-size: 14px; font-weight: 500; }
+  .why-author-role { color: rgba(255,255,255,0.5); font-size: 12px; }
+
+  .why-standards {
+    margin-top: 32px; padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; gap: 12px; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .std-badge {
+    padding: 5px 12px; border-radius: 4px;
+    border: 1px solid rgba(184,148,42,0.35);
+    font-size: 11px; color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── STANDARDS STRIP ── */
+  .standards-strip {
+    background: var(--navy);
+    padding: 28px 2rem;
+  }
+  .standards-inner {
+    max-width: 1140px; margin: 0 auto;
+    display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+    justify-content: center;
+  }
+  .strip-label {
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .strip-items { display: flex; gap: 32px; flex-wrap: wrap; }
+  .strip-item {
+    font-family: var(--font-display);
+    font-size: 16px; color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .strip-item:hover { color: var(--gold-light); }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: var(--gold-pale);
+    border-top: 1px solid rgba(184,148,42,0.2);
+    border-bottom: 1px solid rgba(184,148,42,0.2);
+    text-align: center;
+    padding: 80px 2rem;
+  }
+  .cta-section .section-title { color: var(--navy); }
+  .cta-section .section-sub { margin: 0 auto 36px; }
+  .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-navy {
+    background: var(--navy); color: var(--white);
+    padding: 14px 32px; border-radius: 4px;
+    font-size: 15px; font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-navy:hover { background: var(--navy-mid); }
+  .btn-outline-navy {
+    background: transparent; color: var(--navy);
+    border: 1px solid rgba(13,31,60,0.35);
+    padding: 14px 32px; border-radius: 4px;
+    font-size: 15px; font-weight: 400;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .btn-outline-navy:hover { border-color: var(--navy); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    padding: 60px 2rem 40px;
+  }
+  .footer-grid {
+    max-width: 1140px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand p {
+    font-size: 13px; line-height: 1.7;
+    margin-top: 16px; max-width: 260px;
+  }
+  .footer-col h5 {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 16px;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a {
+    color: rgba(255,255,255,0.55); text-decoration: none;
+    font-size: 13px; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    max-width: 1140px; margin: 0 auto;
+    padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { font-size: 12px; }
+  .footer-legal { display: flex; gap: 20px; }
+  .footer-legal a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; }
+  .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .hero h1 { font-size: 38px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">FP</div>
+    <span class="nav-logo-text">Fin<span>Practice</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#tools">Інструменти</a></li>
+    <li><a href="#why">Про платформу</a></li>
+    <li><a href="#contact">Контакти</a></li>
+    <li><a href="#tools" class="nav-cta">Переглянути інструменти</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Платформа для фінансових практиків</div>
+      <h1>Точні інструменти для <em>аудиту та обліку</em></h1>
+      <p class="hero-desc">
+        Спеціалізовані застосунки для бухгалтерів, аудиторів та фінансових директорів.
+        Відповідність міжнародним стандартам IFRS, МСФЗ та НП(С)БО.
+      </p>
+      <div class="hero-actions">
+        <a href="#tools" class="btn-primary">
+          Переглянути інструменти →
+        </a>
+        <a href="#why" class="btn-ghost">Дізнатись більше</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card-title">IFRS 16 — Оренда</div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Вартість права користування</div>
+        <div class="hero-stat-value highlight">₴ 4 820 000</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Зобов'язання з оренди</div>
+        <div class="hero-stat-value">₴ 4 391 240</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Ефективна ставка</div>
+        <div class="hero-stat-value">8,50%</div>
+      </div>
+      <hr class="hero-divider">
+      <div class="hero-stat">
+        <div class="hero-stat-label">Період оренди</div>
+        <div class="hero-stat-value">5 років / 60 міс.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Стандарт</div>
+        <div class="hero-stat-value">МСФЗ 16 / IFRS 16</div>
+      </div>
+      <hr class="hero-divider">
+      <div class="hero-badge">Розрахунок відповідає IFRS 16</div>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARDS STRIP -->
+<div class="standards-strip">
+  <div class="standards-inner">
+    <span class="strip-label">Підтримувані стандарти</span>
+    <div class="strip-items">
+      <span class="strip-item">IFRS 16</span>
+      <span class="strip-item">IAS 36</span>
+      <span class="strip-item">IFRS 9</span>
+      <span class="strip-item">IAS 12</span>
+      <span class="strip-item">МСФЗ</span>
+      <span class="strip-item">НП(С)БО</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<section class="tools" id="tools">
+  <div class="container">
+    <div class="tools-header">
+      <div>
+        <div class="section-label">Інструменти</div>
+        <h2 class="section-title">Готові рішення для практиків</h2>
+        <p class="section-sub">Desktop-застосунки, що працюють без інтернету. Одноразова оплата, безкоштовні оновлення протягом року.</p>
+      </div>
+    </div>
+
+    <div class="tools-grid">
+
+      <!-- IFRS 16 — featured -->
+      <div class="tool-card featured">
+        <span class="tool-tag tag-new">Новий</span>
+        <div class="tool-icon">📊</div>
+        <span class="tool-tag tag-available">Доступний зараз</span>
+        <h3>IFRS 16 — Калькулятор оренди</h3>
+        <p>Повний розрахунок права користування активом, зобов'язань з оренди, графік амортизації та відсотків відповідно до МСФЗ 16.</p>
+        <ul class="tool-features">
+          <li>Початкове визнання та подальший облік</li>
+          <li>Графік амортизаційних відрахувань</li>
+          <li>Розрахунок ефективної ставки відсотка</li>
+          <li>Експорт до Excel та PDF</li>
+          <li>Підтримка мультивалютності</li>
+        </ul>
+        <div class="tool-footer">
+          <div>
+            <div class="tool-price">$49 <span class="tool-price-period">/ ліцензія</span></div>
+          </div>
+          <a href="#contact" class="btn-tool btn-tool-outline">Придбати →</a>
+        </div>
+      </div>
+
+      <!-- IAS 36 — скоро -->
+      <div class="tool-card">
+        <div class="tool-icon">🔍</div>
+        <span class="tool-tag tag-soon">Незабаром</span>
+        <h3>IAS 36 — Тест на знецінення</h3>
+        <p>Розрахунок відшкодовуваної вартості активів, тест на знецінення одиниць, що генерують грошові потоки.</p>
+        <ul class="tool-features">
+          <li>Модель DCF для розрахунку цінності використання</li>
+          <li>Розподіл гудвілу між ОГК</li>
+          <li>Сценарний аналіз та чутливість</li>
+          <li>Розкриття за МСФЗ 36</li>
+        </ul>
+        <div class="tool-footer">
+          <div>
+            <div class="tool-price" style="color:var(--gray-text); font-size:16px;">Незабаром</div>
+          </div>
+          <button class="btn-tool btn-tool-disabled">Сповістити мене</button>
+        </div>
+      </div>
+
+      <!-- IFRS 9 — скоро -->
+      <div class="tool-card">
+        <div class="tool-icon">⚖️</div>
+        <span class="tool-tag tag-soon">Незабаром</span>
+        <h3>IFRS 9 — Очікувані кредитні збитки</h3>
+        <p>Розрахунок резерву під ОКЗ для фінансових інструментів. Матриця резервування, PD/LGD/EAD моделювання.</p>
+        <ul class="tool-features">
+          <li>Спрощений підхід (матриця резервування)</li>
+          <li>Загальний підхід (Stage 1/2/3)</li>
+          <li>Аналіз портфеля дебіторської заборгованості</li>
+          <li>Відповідність розкриттям МСФЗ 7</li>
+        </ul>
+        <div class="tool-footer">
+          <div>
+            <div class="tool-price" style="color:var(--gray-text); font-size:16px;">Незабаром</div>
+          </div>
+          <button class="btn-tool btn-tool-disabled">Сповістити мене</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-label">Чому FinPractice</div>
+    <h2 class="section-title">Створено практиками<br>для практиків</h2>
+
+    <div class="why-grid">
+      <ul class="why-list">
+        <li class="why-item">
+          <div class="why-num">01</div>
+          <div>
+            <h4>Повна відповідність стандартам</h4>
+            <p>Кожен інструмент розроблений з урахуванням актуальних редакцій МСФЗ та перевірений на реальних кейсах аудиторської практики.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">02</div>
+          <div>
+            <h4>Працює без інтернету</h4>
+            <p>Desktop-застосунок встановлюється на ваш комп'ютер. Дані клієнтів залишаються у вас — жодних хмарних сховищ.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">03</div>
+          <div>
+            <h4>Одноразова оплата</h4>
+            <p>Платите один раз і користуєтесь. Оновлення протягом 12 місяців включені у вартість ліцензії.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">04</div>
+          <div>
+            <h4>Аудиторський trail</h4>
+            <p>Кожен розрахунок має повну деталізацію та пояснення — ви завжди можете пояснити результат клієнту або регулятору.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="why-visual">
+        <div class="why-quote">
+          Замість Excel-таблиць на 40 аркушів — один інструмент, що робить усе правильно з першого разу.
+        </div>
+        <div class="why-author">
+          <div class="why-avatar">МК</div>
+          <div>
+            <div class="why-author-name">Марія Коваленко</div>
+            <div class="why-author-role">Фінансовий директор, виробниче підприємство</div>
+          </div>
+        </div>
+        <div class="why-standards">
+          <span class="std-badge">IFRS 16</span>
+          <span class="std-badge">IAS 36</span>
+          <span class="std-badge">IFRS 9</span>
+          <span class="std-badge">IAS 12</span>
+          <span class="std-badge">НП(С)БО 14</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="section-label">Почати роботу</div>
+    <h2 class="section-title">Готові спростити<br>свій облік за МСФЗ?</h2>
+    <p class="section-sub">
+      Завантажте IFRS 16 вже сьогодні або залиште email — ми повідомимо про нові інструменти першими.
+    </p>
+    <div class="cta-actions">
+      <a href="mailto:hello@finpractice.pro" class="btn-navy">Зв'язатися з нами →</a>
+      <a href="#tools" class="btn-outline-navy">Переглянути інструменти</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom:0">
+        <div class="nav-logo-mark">FP</div>
+        <span class="nav-logo-text" style="font-size:16px">Fin<span>Practice</span></span>
+      </div>
+      <p>Спеціалізовані інструменти для бухгалтерів, аудиторів та фінансистів. Відповідність МСФЗ, надійність, прозорість розрахунків.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Інструменти</h5>
+      <ul class="footer-links">
+        <li><a href="#tools">IFRS 16 — Оренда</a></li>
+        <li><a href="#tools">IAS 36 — Знецінення</a></li>
+        <li><a href="#tools">IFRS 9 — ОКЗ</a></li>
+        <li><a href="#">Всі інструменти</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Компанія</h5>
+      <ul class="footer-links">
+        <li><a href="#why">Про платформу</a></li>
+        <li><a href="#">Документація</a></li>
+        <li><a href="#">Оновлення</a></li>
+        <li><a href="#contact">Контакти</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Підтримка</h5>
+      <ul class="footer-links">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Ліцензування</a></li>
+        <li><a href="mailto:hello@finpractice.pro">hello@finpractice.pro</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 FinPractice. Всі права захищені.</p>
+    <div class="footer-legal">
+      <a href="#">Політика конфіденційності</a>
+      <a href="#">Умови використання</a>
+      <a href="#">Ліцензійна угода</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
