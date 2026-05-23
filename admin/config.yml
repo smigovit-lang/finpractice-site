@@ -1,0 +1,45 @@
+backend:
+  name: github
+  repo: smigovit-lang/finpractice-site
+  branch: main
+
+media_folder: images
+
+collections:
+  - name: settings
+    label: Налаштування сайту
+    files:
+      - name: main
+        label: Головна сторінка
+        file: content.json
+        fields:
+          - label: "Заголовок UA"
+            name: heroTitleUk
+            widget: string
+          - label: "Заголовок EN"
+            name: heroTitleEn
+            widget: string
+          - label: "Опис UA"
+            name: heroDescUk
+            widget: text
+          - label: "Опис EN"
+            name: heroDescEn
+            widget: text
+          - label: "Ціна IFRS 16"
+            name: price
+            widget: string
+          - label: "Email для контактів"
+            name: email
+            widget: string
+          - label: "Відгук UA"
+            name: quoteUk
+            widget: text
+          - label: "Відгук EN"
+            name: quoteEn
+            widget: text
+          - label: "Ім'я автора відгуку UA"
+            name: authorNameUk
+            widget: string
+          - label: "Ім'я автора відгуку EN"
+            name: authorNameEn
+            widget: string
