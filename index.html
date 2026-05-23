@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FinPractice — Інструменти для аудиторів та фінансистів</title>
+<title>FinPractice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -48,14 +48,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,31,60,0.9
 .hero-stat-value.highlight{color:var(--gold-light)}
 .hero-divider{border:none;border-top:1px solid rgba(255,255,255,0.07);margin:20px 0}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,107,82,0.3);border:1px solid rgba(26,107,82,0.5);border-radius:4px;padding:6px 12px;font-size:12px;color:#6ECFAA;font-weight:500}
-.hero-badge::before{content:'✓'}
 section{padding:90px 2rem}
 .container{max-width:1140px;margin:0 auto}
 .section-label{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
 .section-title{font-family:var(--font-display);font-size:38px;font-weight:600;line-height:1.2;color:var(--navy);margin-bottom:16px}
 .section-sub{color:var(--gray-text);font-size:16px;font-weight:300;max-width:560px;line-height:1.8}
 .tools{background:var(--white)}
-.tools-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:24px}
+.tools-header{margin-bottom:56px}
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
 .tool-card{border:1px solid var(--gray-line);border-radius:10px;padding:32px;transition:border-color 0.2s,transform 0.2s;position:relative;background:var(--white)}
 .tool-card:hover{border-color:var(--gold);transform:translateY(-3px)}
@@ -73,7 +72,7 @@ section{padding:90px 2rem}
 .tool-features{list-style:none;margin-bottom:28px}
 .tool-features li{font-size:13px;color:var(--gray-text);padding:5px 0;display:flex;align-items:center;gap:8px}
 .tool-card.featured .tool-features li{color:rgba(255,255,255,0.65)}
-.tool-features li::before{content:'—';color:var(--gold);flex-shrink:0}
+.tool-features li::before{content:'\2014';color:var(--gold);flex-shrink:0}
 .tool-footer{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--gray-line)}
 .tool-card.featured .tool-footer{border-top-color:rgba(255,255,255,0.1)}
 .tool-price{font-size:22px;font-weight:500;color:var(--navy)}
@@ -94,7 +93,7 @@ section{padding:90px 2rem}
 .why-visual{background:var(--navy);border-radius:12px;padding:40px;position:relative;overflow:hidden}
 .why-visual::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(184,148,42,0.1) 0%,transparent 70%)}
 .why-quote{font-family:var(--font-display);font-size:20px;color:var(--white);line-height:1.6;margin-bottom:24px;position:relative;z-index:1}
-.why-quote::before{content:'“';display:block;font-size:60px;color:var(--gold);line-height:1;margin-bottom:8px}
+.why-quote::before{content:'\201C';display:block;font-size:60px;color:var(--gold);line-height:1;margin-bottom:8px}
 .why-author{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
 .why-avatar{width:42px;height:42px;border-radius:50%;background:rgba(184,148,42,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gold);font-weight:500}
 .why-author-name{color:var(--white);font-size:14px;font-weight:500}
@@ -147,7 +146,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:60px 2rem 40px
 
 <section class="hero">
   <div class="hero-grid">
-    <div class="hero-content">
+    <div>
       <div class="hero-eyebrow" id="heroEyebrow"></div>
       <h1 id="heroH1"></h1>
       <p class="hero-desc" id="heroDesc"></p>
@@ -158,11 +157,11 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:60px 2rem 40px
     </div>
     <div class="hero-card">
       <div class="hero-card-title" id="cardTitle"></div>
-      <div class="hero-stat"><div class="hero-stat-label" id="stat1Label"></div><div class="hero-stat-value highlight">₴ 4 820 000</div></div>
-      <div class="hero-stat"><div class="hero-stat-label" id="stat2Label"></div><div class="hero-stat-value">₴ 4 391 240</div></div>
-      <div class="hero-stat"><div class="hero-stat-label" id="stat3Label"></div><div class="hero-stat-value">8,50%</div></div>
+      <div class="hero-stat"><div class="hero-stat-label" id="stat1"></div><div class="hero-stat-value highlight">&#8372; 4 820 000</div></div>
+      <div class="hero-stat"><div class="hero-stat-label" id="stat2"></div><div class="hero-stat-value">&#8372; 4 391 240</div></div>
+      <div class="hero-stat"><div class="hero-stat-label" id="stat3"></div><div class="hero-stat-value">8,50%</div></div>
       <hr class="hero-divider">
-      <div class="hero-stat"><div class="hero-stat-label" id="stat4Label"></div><div class="hero-stat-value" id="stat4Val"></div></div>
+      <div class="hero-stat"><div class="hero-stat-label" id="stat4"></div><div class="hero-stat-value" id="stat4val"></div></div>
       <hr class="hero-divider">
       <div class="hero-badge" id="heroBadge"></div>
     </div>
@@ -173,7 +172,9 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:60px 2rem 40px
   <div class="standards-inner">
     <span class="strip-label" id="stripLabel"></span>
     <div class="strip-items">
-      <span class="strip-item">IFRS 16</span><span class="strip-item">IAS 36</span><span class="strip-item">IFRS 9</span><span class="strip-item">IAS 12</span><span class="strip-item">IFRS / МСФЗ</span><span class="strip-item">НП(С)БО</span>
+      <span class="strip-item">IFRS 16</span><span class="strip-item">IAS 36</span>
+      <span class="strip-item">IFRS 9</span><span class="strip-item">IAS 12</span>
+      <span class="strip-item">IFRS / MSFZ</span><span class="strip-item">NP(S)BO</span>
     </div>
   </div>
 </div>
@@ -181,45 +182,43 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:60px 2rem 40px
 <section class="tools" id="tools">
   <div class="container">
     <div class="tools-header">
-      <div>
-        <div class="section-label" id="toolsLabel"></div>
-        <h2 class="section-title" id="toolsTitle"></h2>
-        <p class="section-sub" id="toolsSub"></p>
-      </div>
+      <div class="section-label" id="toolsLabel"></div>
+      <h2 class="section-title" id="toolsTitle"></h2>
+      <p class="section-sub" id="toolsSub"></p>
     </div>
     <div class="tools-grid">
       <div class="tool-card featured">
         <span class="tool-tag tag-new" id="tagNew"></span>
-        <div class="tool-icon">📊</div>
-        <span class="tool-tag tag-available" id="tagAvailable"></span>
-        <h3>IFRS 16 — <span id="tool1Name"></span></h3>
-        <p id="tool1Desc"></p>
-        <ul class="tool-features" id="tool1Features"></ul>
+        <div class="tool-icon">&#128202;</div>
+        <span class="tool-tag tag-available" id="tagAvail"></span>
+        <h3>IFRS 16 &#8212; <span id="t1name"></span></h3>
+        <p id="t1desc"></p>
+        <ul class="tool-features" id="t1feats"></ul>
         <div class="tool-footer">
-          <div><div class="tool-price">$49 <span class="tool-price-period" id="licenseWord"></span></div></div>
+          <div class="tool-price">$49 <span class="tool-price-period" id="licWord"></span></div>
           <a href="#contact" class="btn-tool btn-tool-outline" id="buyBtn"></a>
         </div>
       </div>
       <div class="tool-card">
-        <div class="tool-icon">🔍</div>
+        <div class="tool-icon">&#128269;</div>
         <span class="tool-tag tag-soon" id="tagSoon1"></span>
-        <h3>IAS 36 — <span id="tool2Name"></span></h3>
-        <p id="tool2Desc"></p>
-        <ul class="tool-features" id="tool2Features"></ul>
+        <h3>IAS 36 &#8212; <span id="t2name"></span></h3>
+        <p id="t2desc"></p>
+        <ul class="tool-features" id="t2feats"></ul>
         <div class="tool-footer">
-          <div><div class="tool-price" style="color:var(--gray-text);font-size:16px;" id="comingSoon1"></div></div>
-          <button class="btn-tool btn-tool-disabled" id="notifyBtn1"></button>
+          <div class="tool-price" style="color:var(--gray-text);font-size:16px" id="cs1"></div>
+          <button class="btn-tool btn-tool-disabled" id="nb1"></button>
         </div>
       </div>
       <div class="tool-card">
-        <div class="tool-icon">⚖️</div>
+        <div class="tool-icon">&#9878;&#65039;</div>
         <span class="tool-tag tag-soon" id="tagSoon2"></span>
-        <h3>IFRS 9 — <span id="tool3Name"></span></h3>
-        <p id="tool3Desc"></p>
-        <ul class="tool-features" id="tool3Features"></ul>
+        <h3>IFRS 9 &#8212; <span id="t3name"></span></h3>
+        <p id="t3desc"></p>
+        <ul class="tool-features" id="t3feats"></ul>
         <div class="tool-footer">
-          <div><div class="tool-price" style="color:var(--gray-text);font-size:16px;" id="comingSoon2"></div></div>
-          <button class="btn-tool btn-tool-disabled" id="notifyBtn2"></button>
+          <div class="tool-price" style="color:var(--gray-text);font-size:16px" id="cs2"></div>
+          <button class="btn-tool btn-tool-disabled" id="nb2"></button>
         </div>
       </div>
     </div>
@@ -235,14 +234,15 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:60px 2rem 40px
       <div class="why-visual">
         <div class="why-quote" id="whyQuote"></div>
         <div class="why-author">
-          <div class="why-avatar">МК</div>
+          <div class="why-avatar">MK</div>
           <div>
-            <div class="why-author-name" id="authorName"></div>
-            <div class="why-author-role" id="authorRole"></div>
+            <div class="why-author-name" id="authName"></div>
+            <div class="why-author-role" id="authRole"></div>
           </div>
         </div>
         <div class="why-standards">
-          <span class="std-badge">IFRS 16</span><span class="std-badge">IAS 36</span><span class="std-badge">IFRS 9</span><span class="std-badge">IAS 12</span>
+          <span class="std-badge">IFRS 16</span><span class="std-badge">IAS 36</span>
+          <span class="std-badge">IFRS 9</span><span class="std-badge">IAS 12</span>
         </div>
       </div>
     </div>
@@ -268,10 +268,10 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:60px 2rem 40px
         <div class="nav-logo-mark">FP</div>
         <span class="nav-logo-text" style="font-size:16px">Fin<span>Practice</span></span>
       </div>
-      <p id="footerDesc"></p>
+      <p id="ftDesc"></p>
     </div>
     <div class="footer-col">
-      <h5 id="footerTools"></h5>
+      <h5 id="ftTools"></h5>
       <ul class="footer-links">
         <li><a href="#tools">IFRS 16</a></li>
         <li><a href="#tools">IAS 36</a></li>
@@ -279,15 +279,15 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:60px 2rem 40px
       </ul>
     </div>
     <div class="footer-col">
-      <h5 id="footerCompany"></h5>
+      <h5 id="ftCompany"></h5>
       <ul class="footer-links">
-        <li><a href="#why" id="footerAbout"></a></li>
-        <li><a href="#" id="footerDocs"></a></li>
-        <li><a href="#contact" id="footerContact2"></a></li>
+        <li><a href="#why" id="ftAbout"></a></li>
+        <li><a href="#" id="ftDocs"></a></li>
+        <li><a href="#contact" id="ftContact2"></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h5 id="footerSupport"></h5>
+      <h5 id="ftSupport"></h5>
       <ul class="footer-links">
         <li><a href="#">FAQ</a></li>
         <li><a href="mailto:hello@finpractice.pro">hello@finpractice.pro</a></li>
@@ -295,156 +295,73 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:60px 2rem 40px
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2025 FinPractice. <span id="footerRights"></span></p>
+    <p>&copy; 2025 FinPractice. <span id="ftRights"></span></p>
     <div class="footer-legal">
-      <a href="#" id="footerPrivacy"></a>
-      <a href="#" id="footerTerms"></a>
+      <a href="#" id="ftPrivacy"></a>
+      <a href="#" id="ftTerms"></a>
     </div>
   </div>
 </footer>
 
 <script>
-var T = {
-  uk: {
-    navTools:"Інструменти",navAbout:"Про платформу",navContact:"Контакти",navCta:"Переглянути інструменти",
-    heroEyebrow:"Платформа для фінансових практиків",
-    heroH1:"Точні інструменти для <em>аудиту та обліку</em>",
-    heroDesc:"Спеціалізовані застосунки для бухгалтерів, аудиторів та фінансових директорів. Відповідність міжнародним стандартам IFRS, МСФЗ та НП(С)БО.",
-    heroCta:"Переглянути інструменти →",heroLearn:"Дізнатись більше",
-    cardTitle:"IFRS 16 — Оренда",stat1:"Вартість права користування",stat2:"Зобов’язання з оренди",stat3:"Ефективна ставка",stat4:"Період оренди",stat4val:"5 років / 60 міс.",badge:"Розрахунок відповідає IFRS 16",
-    stripLabel:"Підтримувані стандарти",
-    toolsLabel:"Інструменти",toolsTitle:"Готові рішення для практиків",toolsSub:"Desktop-застосунки, що працюють без інтернету. Одноразова оплата, оновлення протягом року.",
-    tagNew:"Новий",tagAvailable:"Доступний зараз",tagSoon:"Незабаром",license:"/ ліцензія",buyBtn:"Придбати →",notifyBtn:"Сповістити мене",comingSoon:"Незабаром",
-    tool1Name:"Калькулятор оренди",tool1Desc:"Повний розрахунок права користування активом, зобов’язань з оренди, графік амортизації та відсотків відповідно до МСФЗ 16.",
-    tool1f:["Початкове визнання та подальший облік","Графік амортизаційних відрахувань","Ефективна ставка відсотка","Експорт до Excel та PDF","Мультивалютність"],
-    tool2Name:"Тест на знецінення",tool2Desc:"Розрахунок відшкодовуваної вартості активів, тест на знецінення ОГК.",
-    tool2f:["DCF модель цінності використання","Розподіл гудвілу між ОГК","Сценарний аналіз"],
-    tool3Name:"Очікувані кредитні збитки",tool3Desc:"Розрахунок резерву під ОКЗ. Матриця резервування, PD/LGD/EAD.",
-    tool3f:["Спрощений підхід (матриця)","Загальний підхід (Stage 1/2/3)","Аналіз дебіторської заборгованості"],
-    whyLabel:"Чому FinPractice",whyTitle:"Створено практиками
-для практиків",
-    why:[{h:"Відповідність стандартам",p:"Кожен інструмент розроблений з урахуванням актуальних редакцій МСФЗ та перевірений на реальних кейсах."},{h:"Працює без інтернету",p:"Desktop-застосунок встановлюється на ваш комп'ютер. Дані клієнтів залишаються у вас."},{h:"Одноразова оплата",p:"Платите один раз і користуєтесь. Оновлення 12 місяців включені."},{h:"Аудиторський trail",p:"Кожен розрахунок має повну деталізацію — ви завжди можете пояснити результат клієнту."}],
-    whyQuote:"Замість Excel-таблиць на 40 аркушів — один інструмент, що робить усе правильно з першого разу.",
-    authorName:"Марія Коваленко",authorRole:"Фінансовий директор, виробниче підприємство",
-    ctaLabel:"Почати роботу",ctaTitle:"Готові спростити
-облік за МСФЗ?",ctaSub:"Завантажте IFRS 16 вже сьогодні або залиште email — ми повідомимо про нові інструменти першими.",
-    ctaContact:"Зв’язатись з нами →",ctaBrowse:"Переглянути інструменти",
-    footerDesc:"Спеціалізовані інструменти для бухгалтерів, аудиторів та фінансистів.",
-    footerTools:"Інструменти",footerCompany:"Компанія",footerSupport:"Підтримка",
-    footerAbout:"Про платформу",footerDocs:"Документація",footerContact2:"Контакти",
-    footerRights:"Всі права захищені.",footerPrivacy:"Політика конфіденційності",footerTerms:"Умови використання"
-  },
-  en: {
-    navTools:"Tools",navAbout:"About",navContact:"Contact",navCta:"Browse tools",
-    heroEyebrow:"Platform for financial practitioners",
-    heroH1:"Precise tools for <em>audit and accounting</em>",
-    heroDesc:"Specialized desktop apps for accountants, auditors and CFOs. Full compliance with IFRS international standards.",
-    heroCta:"Browse tools →",heroLearn:"Learn more",
-    cardTitle:"IFRS 16 — Lease",stat1:"Right-of-use asset",stat2:"Lease liability",stat3:"Effective rate",stat4:"Lease term",stat4val:"5 years / 60 mo.",badge:"Compliant with IFRS 16",
-    stripLabel:"Supported standards",
-    toolsLabel:"Tools",toolsTitle:"Ready-made tools for practitioners",toolsSub:"Desktop apps that work offline. One-time payment, free updates for 12 months.",
-    tagNew:"New",tagAvailable:"Available now",tagSoon:"Coming soon",license:"/ license",buyBtn:"Buy now →",notifyBtn:"Notify me",comingSoon:"Coming soon",
-    tool1Name:"Lease Calculator",tool1Desc:"Full calculation of right-of-use assets, lease liabilities, amortization and interest schedule in accordance with IFRS 16.",
-    tool1f:["Initial recognition and subsequent measurement","Depreciation schedule","Effective interest rate calculation","Export to Excel and PDF","Multi-currency support"],
-    tool2Name:"Impairment Test",tool2Desc:"Recoverable amount calculation and impairment test for cash-generating units per IAS 36.",
-    tool2f:["DCF value-in-use model","Goodwill allocation to CGUs","Scenario analysis"],
-    tool3Name:"Expected Credit Losses",tool3Desc:"ECL allowance calculation. Provision matrix, PD/LGD/EAD modelling per IFRS 9.",
-    tool3f:["Simplified approach (provision matrix)","General approach (Stage 1/2/3)","Receivables portfolio analysis"],
-    whyLabel:"Why FinPractice",whyTitle:"Built by practitioners\nfor practitioners",
-    why:[{h:"Standards compliance",p:"Every tool is developed per the latest IFRS editions and verified on real audit practice cases."},{h:"Works offline",p:"Desktop app installs on your computer. Client data stays with you — no cloud storage."},{h:"One-time payment",p:"Pay once and use forever. Updates for 12 months are included in the license."},{h:"Full audit trail",p:"Every calculation has full detail — you can always explain the result to a client or regulator."}],
-    whyQuote:"Instead of 40-sheet Excel files — one tool that gets everything right the first time.",
-    authorName:"Maria Kovalenko",authorRole:"CFO, Manufacturing company",
-    ctaLabel:"Get started",ctaTitle:"Ready to simplify\nyour IFRS accounting?",ctaSub:"Download IFRS 16 today or leave your email — we will notify you about new tools first.",
-    ctaContact:"Contact us →",ctaBrowse:"Browse tools",
-    footerDesc:"Specialized tools for accountants, auditors and financial professionals. IFRS compliance, reliability, transparency.",
-    footerTools:"Tools",footerCompany:"Company",footerSupport:"Support",
-    footerAbout:"About",footerDocs:"Documentation",footerContact2:"Contact",
-    footerRights:"All rights reserved.",footerPrivacy:"Privacy Policy",footerTerms:"Terms of Use"
-  }
-};
+var T = {uk: {"navTools": "Інструменти", "navAbout": "Про платформу", "navContact": "Контакти", "navCta": "Переглянути інструменти", "heroEyebrow": "Платформа для фінансових практиків", "heroH1": "Точні інструменти для <em>аудиту та обліку</em>", "heroDesc": "Спеціалізовані застосунки для бухгалтерів, аудиторів та фінансових директорів. Відповідність міжнародним стандартам IFRS, МСФЗ та НП(С)БО.", "heroCta": "Переглянути інструменти →", "heroLearn": "Дізнатись більше", "cardTitle": "IFRS 16 — Оренда", "stat1": "Вартість права користування", "stat2": "Зобов'язання з оренди", "stat3": "Ефективна ставка", "stat4": "Період оренди", "stat4val": "5 років / 60 міс.", "badge": "Розрахунок відповідає IFRS 16", "stripLabel": "Підтримувані стандарти", "toolsLabel": "Інструменти", "toolsTitle": "Готові рішення для практиків", "toolsSub": "Desktop-застосунки, що працюють без інтернету. Одноразова оплата, оновлення протягом року.", "tagNew": "Новий", "tagAvailable": "Доступний зараз", "tagSoon": "Незабаром", "license": "/ ліцензія", "buyBtn": "Придбати →", "notifyBtn": "Сповістити мене", "comingSoon": "Незабаром", "tool1Name": "Калькулятор оренди", "tool1Desc": "Повний розрахунок права користування активом, зобов'язань з оренди, графік амортизації та відсотків відповідно до МСФЗ 16.", "tool1f": ["Початкове визнання та подальший облік", "Графік амортизаційних відрахувань", "Ефективна ставка відсотка", "Експорт до Excel та PDF", "Мультивалютність"], "tool2Name": "Тест на знецінення", "tool2Desc": "Розрахунок відшкодовуваної вартості активів, тест на знецінення ОГК відповідно до МСФЗ 36.", "tool2f": ["DCF модель цінності використання", "Розподіл гудвілу між ОГК", "Сценарний аналіз"], "tool3Name": "Очікувані кредитні збитки", "tool3Desc": "Розрахунок резерву під ОКЗ. Матриця резервування, PD/LGD/EAD моделювання за МСФЗ 9.", "tool3f": ["Спрощений підхід (матриця)", "Загальний підхід (Stage 1/2/3)", "Аналіз дебіторської заборгованості"], "whyLabel": "Чому FinPractice", "whyTitle": "Створено практиками<br>для практиків", "why": [{"h": "Відповідність стандартам", "p": "Кожен інструмент розроблений з урахуванням актуальних редакцій МСФЗ та перевірений на реальних кейсах."}, {"h": "Працює без інтернету", "p": "Desktop-застосунок встановлюється на ваш комп'ютер. Дані клієнтів залишаються у вас."}, {"h": "Одноразова оплата", "p": "Платите один раз і користуєтесь. Оновлення 12 місяців включені."}, {"h": "Аудиторський trail", "p": "Кожен розрахунок має повну деталізацію — ви завжди можете пояснити результат клієнту."}], "whyQuote": "Замість Excel-таблиць на 40 аркушів — один інструмент, що робить усе правильно з першого разу.", "authorName": "Марія Коваленко", "authorRole": "Фінансовий директор, виробниче підприємство", "ctaLabel": "Почати роботу", "ctaTitle": "Готові спростити<br>свій облік за МСФЗ?", "ctaSub": "Завантажте IFRS 16 вже сьогодні або залиште email — ми повідомимо про нові інструменти першими.", "ctaContact": "Зв'язатися з нами →", "ctaBrowse": "Переглянути інструменти", "footerDesc": "Спеціалізовані інструменти для бухгалтерів, аудиторів та фінансистів. Відповідність МСФЗ, надійність, прозорість.", "footerTools": "Інструменти", "footerCompany": "Компанія", "footerSupport": "Підтримка", "footerAbout": "Про платформу", "footerDocs": "Документація", "footerContact2": "Контакти", "footerRights": "Всі права захищені.", "footerPrivacy": "Політика конфіденційності", "footerTerms": "Умови використання"}, en: {"navTools": "Tools", "navAbout": "About", "navContact": "Contact", "navCta": "Browse tools", "heroEyebrow": "Platform for financial practitioners", "heroH1": "Precise tools for <em>audit and accounting</em>", "heroDesc": "Specialized desktop apps for accountants, auditors and CFOs. Full compliance with IFRS international standards.", "heroCta": "Browse tools →", "heroLearn": "Learn more", "cardTitle": "IFRS 16 — Lease", "stat1": "Right-of-use asset", "stat2": "Lease liability", "stat3": "Effective rate", "stat4": "Lease term", "stat4val": "5 years / 60 mo.", "badge": "Compliant with IFRS 16", "stripLabel": "Supported standards", "toolsLabel": "Tools", "toolsTitle": "Ready-made tools for practitioners", "toolsSub": "Desktop apps that work offline. One-time payment, free updates for 12 months.", "tagNew": "New", "tagAvailable": "Available now", "tagSoon": "Coming soon", "license": "/ license", "buyBtn": "Buy now →", "notifyBtn": "Notify me", "comingSoon": "Coming soon", "tool1Name": "Lease Calculator", "tool1Desc": "Full calculation of right-of-use assets, lease liabilities, amortization and interest schedule per IFRS 16.", "tool1f": ["Initial recognition and subsequent measurement", "Depreciation schedule", "Effective interest rate", "Export to Excel and PDF", "Multi-currency support"], "tool2Name": "Impairment Test", "tool2Desc": "Recoverable amount calculation and impairment test for cash-generating units per IAS 36.", "tool2f": ["DCF value-in-use model", "Goodwill allocation to CGUs", "Scenario analysis"], "tool3Name": "Expected Credit Losses", "tool3Desc": "ECL allowance calculation. Provision matrix, PD/LGD/EAD modelling per IFRS 9.", "tool3f": ["Simplified approach (provision matrix)", "General approach (Stage 1/2/3)", "Receivables portfolio analysis"], "whyLabel": "Why FinPractice", "whyTitle": "Built by practitioners<br>for practitioners", "why": [{"h": "Standards compliance", "p": "Every tool is developed per the latest IFRS editions and verified on real audit practice cases."}, {"h": "Works offline", "p": "Desktop app installs on your computer. Client data stays with you — no cloud storage."}, {"h": "One-time payment", "p": "Pay once and use forever. Updates for 12 months are included in the license."}, {"h": "Full audit trail", "p": "Every calculation has full detail — you can always explain the result to a client or regulator."}], "whyQuote": "Instead of 40-sheet Excel files — one tool that gets everything right the first time.", "authorName": "Maria Kovalenko", "authorRole": "CFO, Manufacturing company", "ctaLabel": "Get started", "ctaTitle": "Ready to simplify<br>your IFRS accounting?", "ctaSub": "Download IFRS 16 today or leave your email — we will notify you about new tools first.", "ctaContact": "Contact us →", "ctaBrowse": "Browse tools", "footerDesc": "Specialized tools for accountants, auditors and financial professionals. IFRS compliance, reliability, transparency.", "footerTools": "Tools", "footerCompany": "Company", "footerSupport": "Support", "footerAbout": "About", "footerDocs": "Documentation", "footerContact2": "Contact", "footerRights": "All rights reserved.", "footerPrivacy": "Privacy Policy", "footerTerms": "Terms of Use"}};
+
+function txt(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; }
+function html(id, val) { var el = document.getElementById(id); if(el) el.innerHTML = val; }
+function feats(id, arr) { var el = document.getElementById(id); if(el) el.innerHTML = arr.map(function(f){ return '<li>'+f+'</li>'; }).join(''); }
 
 function setLang(lang) {
   var t = T[lang];
   document.documentElement.lang = lang;
-  // nav
-  document.getElementById('navLinks').innerHTML =
+  html('navLinks',
     '<li><a href="#tools">'+t.navTools+'</a></li>'+
     '<li><a href="#why">'+t.navAbout+'</a></li>'+
     '<li><a href="#contact">'+t.navContact+'</a></li>'+
-    '<li><a href="#tools" class="nav-cta">'+t.navCta+'</a></li>';
-  // hero
-  document.getElementById('heroEyebrow').textContent = t.heroEyebrow;
-  document.getElementById('heroH1').innerHTML = t.heroH1;
-  document.getElementById('heroDesc').textContent = t.heroDesc;
-  document.getElementById('heroCta').textContent = t.heroCta;
-  document.getElementById('heroLearn').textContent = t.heroLearn;
-  document.getElementById('cardTitle').textContent = t.cardTitle;
-  document.getElementById('stat1Label').textContent = t.stat1;
-  document.getElementById('stat2Label').textContent = t.stat2;
-  document.getElementById('stat3Label').textContent = t.stat3;
-  document.getElementById('stat4Label').textContent = t.stat4;
-  document.getElementById('stat4Val').textContent = t.stat4val;
-  document.getElementById('heroBadge').textContent = t.badge;
-  document.getElementById('stripLabel').textContent = t.stripLabel;
-  // tools
-  document.getElementById('toolsLabel').textContent = t.toolsLabel;
-  document.getElementById('toolsTitle').textContent = t.toolsTitle;
-  document.getElementById('toolsSub').textContent = t.toolsSub;
-  document.getElementById('tagNew').textContent = t.tagNew;
-  document.getElementById('tagAvailable').textContent = t.tagAvailable;
-  document.getElementById('tagSoon1').textContent = t.tagSoon;
-  document.getElementById('tagSoon2').textContent = t.tagSoon;
-  document.getElementById('licenseWord').textContent = t.license;
-  document.getElementById('buyBtn').textContent = t.buyBtn;
-  document.getElementById('notifyBtn1').textContent = t.notifyBtn;
-  document.getElementById('notifyBtn2').textContent = t.notifyBtn;
-  document.getElementById('comingSoon1').textContent = t.comingSoon;
-  document.getElementById('comingSoon2').textContent = t.comingSoon;
-  document.getElementById('tool1Name').textContent = t.tool1Name;
-  document.getElementById('tool1Desc').textContent = t.tool1Desc;
-  document.getElementById('tool1Features').innerHTML = t.tool1f.map(function(f){return '<li>'+f+'</li>';}).join('');
-  document.getElementById('tool2Name').textContent = t.tool2Name;
-  document.getElementById('tool2Desc').textContent = t.tool2Desc;
-  document.getElementById('tool2Features').innerHTML = t.tool2f.map(function(f){return '<li>'+f+'</li>';}).join('');
-  document.getElementById('tool3Name').textContent = t.tool3Name;
-  document.getElementById('tool3Desc').textContent = t.tool3Desc;
-  document.getElementById('tool3Features').innerHTML = t.tool3f.map(function(f){return '<li>'+f+'</li>';}).join('');
-  // why
-  document.getElementById('whyLabel').textContent = t.whyLabel;
-  document.getElementById('whyTitle').innerHTML = t.whyTitle.replace('\n','<br>');
-  document.getElementById('whyList').innerHTML = t.why.map(function(w,i){
+    '<li><a href="#tools" class="nav-cta">'+t.navCta+'</a></li>'
+  );
+  txt('heroEyebrow', t.heroEyebrow);
+  html('heroH1', t.heroH1);
+  txt('heroDesc', t.heroDesc);
+  txt('heroCta', t.heroCta);
+  txt('heroLearn', t.heroLearn);
+  txt('cardTitle', t.cardTitle);
+  txt('stat1', t.stat1); txt('stat2', t.stat2); txt('stat3', t.stat3);
+  txt('stat4', t.stat4); txt('stat4val', t.stat4val);
+  txt('heroBadge', t.badge);
+  txt('stripLabel', t.stripLabel);
+  txt('toolsLabel', t.toolsLabel);
+  txt('toolsTitle', t.toolsTitle);
+  txt('toolsSub', t.toolsSub);
+  txt('tagNew', t.tagNew); txt('tagAvail', t.tagAvailable);
+  txt('tagSoon1', t.tagSoon); txt('tagSoon2', t.tagSoon);
+  txt('licWord', t.license); txt('buyBtn', t.buyBtn);
+  txt('cs1', t.comingSoon); txt('cs2', t.comingSoon);
+  txt('nb1', t.notifyBtn); txt('nb2', t.notifyBtn);
+  txt('t1name', t.tool1Name); txt('t1desc', t.tool1Desc); feats('t1feats', t.tool1f);
+  txt('t2name', t.tool2Name); txt('t2desc', t.tool2Desc); feats('t2feats', t.tool2f);
+  txt('t3name', t.tool3Name); txt('t3desc', t.tool3Desc); feats('t3feats', t.tool3f);
+  txt('whyLabel', t.whyLabel);
+  html('whyTitle', t.whyTitle);
+  html('whyList', t.why.map(function(w,i){
     return '<li class="why-item"><div class="why-num">0'+(i+1)+'</div><div><h4>'+w.h+'</h4><p>'+w.p+'</p></div></li>';
-  }).join('');
-  document.getElementById('whyQuote').textContent = t.whyQuote;
-  document.getElementById('authorName').textContent = t.authorName;
-  document.getElementById('authorRole').textContent = t.authorRole;
-  // cta
-  document.getElementById('ctaLabel').textContent = t.ctaLabel;
-  document.getElementById('ctaTitle').innerHTML = t.ctaTitle.replace('\n','<br>');
-  document.getElementById('ctaSub').textContent = t.ctaSub;
-  document.getElementById('ctaContact').textContent = t.ctaContact;
-  document.getElementById('ctaBrowse').textContent = t.ctaBrowse;
-  // footer
-  document.getElementById('footerDesc').textContent = t.footerDesc;
-  document.getElementById('footerTools').textContent = t.footerTools;
-  document.getElementById('footerCompany').textContent = t.footerCompany;
-  document.getElementById('footerSupport').textContent = t.footerSupport;
-  document.getElementById('footerAbout').textContent = t.footerAbout;
-  document.getElementById('footerDocs').textContent = t.footerDocs;
-  document.getElementById('footerContact2').textContent = t.footerContact2;
-  document.getElementById('footerRights').textContent = t.footerRights;
-  document.getElementById('footerPrivacy').textContent = t.footerPrivacy;
-  document.getElementById('footerTerms').textContent = t.footerTerms;
-  // buttons
+  }).join(''));
+  txt('whyQuote', t.whyQuote);
+  txt('authName', t.authorName); txt('authRole', t.authorRole);
+  txt('ctaLabel', t.ctaLabel); html('ctaTitle', t.ctaTitle);
+  txt('ctaSub', t.ctaSub); txt('ctaContact', t.ctaContact); txt('ctaBrowse', t.ctaBrowse);
+  txt('ftDesc', t.footerDesc); txt('ftTools', t.footerTools);
+  txt('ftCompany', t.footerCompany); txt('ftSupport', t.footerSupport);
+  txt('ftAbout', t.footerAbout); txt('ftDocs', t.footerDocs); txt('ftContact2', t.footerContact2);
+  txt('ftRights', t.footerRights); txt('ftPrivacy', t.footerPrivacy); txt('ftTerms', t.footerTerms);
   document.querySelectorAll('.lang-btn').forEach(function(b){
-    b.classList.toggle('active', b.textContent === (lang==='uk'?'UA':'EN'));
+    b.classList.toggle('active', (lang==='uk' && b.textContent==='UA') || (lang==='en' && b.textContent==='EN'));
   });
   try { localStorage.setItem('fp-lang', lang); } catch(e) {}
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  try { var s=localStorage.getItem('fp-lang'); if(s) setLang(s); else setLang('uk'); } catch(e) { setLang('uk'); }
-});
+var initLang = 'uk';
+try { var s = localStorage.getItem('fp-lang'); if(s) initLang = s; } catch(e) {}
+setLang(initLang);
 </script>
 </body>
 </html>
